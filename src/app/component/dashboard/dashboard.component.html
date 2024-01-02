@@ -1,0 +1,70 @@
+<div class="container-fluid bg-light">
+    <div class="container bg-light">
+
+        <div class="row mt-4" style="height: 500px;"> <!--margin top 4-->
+            <div class="col"></div>
+            <div class="col-md-6 bg-white shadow">
+
+                <div class="card bg-warning mt-4">
+                    <h4 class="text-white ps-3 pt-2 pb-2"> To Do List</h4> <!--padding top,start, bottom -->
+                </div>
+
+                <div class="shadow">
+                    <div class="input-group p-4">
+                        <input type="text" class="form-control" placeholder="Enter Task" name="task" [(ngModel)] = "addTaskValue">
+                        <button class="btn btn-outline-success" type="button" (click)="addTask()" >Add</button>
+                    </div>
+                </div>
+
+                <!--other part for displaying tasks-->
+                <h4 class="text-primary mt-4">Tasks : </h4>
+
+                <div style="overflow-y: auto;height: 350px;">
+                    <!-- Use ngFor loop to iterate over TaskObject array -->
+                    <div class="m-3" *ngFor="let task of taskArr">
+                        <div class="p-2 shadow">
+                            <div class="input-group row ps-3">
+                                <div class="card col-md-10 border-0"> {{ task.task_name }} </div>
+
+                                <!-- Edit functionality -->
+                                <button class="btn btn-outline-primary col me-2" data-bs-toggle="modal" type="button" data-bs-target="#exampleModal" (click)="call(task)">E</button>
+                                <!-- <button class="btn btn-outline-danger col">Delete</button> -->
+
+                                <!-- Delete functionality -->
+                                <div class="btn btn-outline-danger col" (click)="deleteTask(task)">D</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Button trigger modal, Removing this button as we already have edit button in Todo list 
+                Instead we'll add the same properties to edit button above-->
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                </button> -->
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Task</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group p-4">
+                                <input type="text" class="form-control" placeholder="Enter Task" name="task" [(ngModel)] = "editTaskValue">
+                                <button class="btn btn-outline-success" type="button" data-bs-dismiss="modal" (click)="editTask()" >Update</button>
+                            </div>
+                        
+                        </div>
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</div>
